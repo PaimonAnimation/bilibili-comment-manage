@@ -1,6 +1,7 @@
 # coding=utf-8
 import time
 import random
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from datetime import datetime
@@ -50,7 +51,7 @@ def clean_comments(driver, video_url, violation_words, user_violation_count):
                 time.sleep(2)
 
                 # 确认删除
-                confirm_btn = get_element(driver, (By.CSS_SELECTOR, ".v muit-dialog [text()='确认']"))
+                confirm_btn = get_element(driver, (By.CSS_SELECTOR, ".van-dialog .confirm"))
                 if confirm_btn:
                     confirm_btn[0].click()
                     time.sleep(2)
@@ -80,7 +81,7 @@ def blacklist_user(driver, user_uid):
         time.sleep(2)
 
         # 确认拉黑
-        confirm_btn = get_element(driver, (By.CSS_SELECTOR, ".van-dialog__confirm"))
+        confirm_btn = get_element(driver, (By.CSS_SELECTOR, ".van-dialog .confirm"))
         if confirm_btn:
             driver.execute_script("arguments[0].click();", confirm_btn)
             time.sleep(2)
@@ -103,22 +104,28 @@ def auto_monitor_comments(driver, video_urls, violation_words):
             print(f"发生错误: {e}, 连续失败次数: {failure_counter}")
             if failure_counter >= 3:
                 print("连续失败三次，程序稍后重试...")
-                time.sleep(300)  # 5分钟后重试
+                time.sleep(1800)  # 30分钟后重试
                 failure_counter = 0
         else:
             failure_counter = 0
 
-        # 轮询间隔：随机 2-5 分钟
-        sleep_time = random.randint(120, 300)
+        # 轮询间隔：随机 3-7 分钟
+        sleep_time = random.randint(180, 420)
         print(f"下一轮询时间: {datetime.now() + datetime.timedelta(seconds=sleep_time)}")
         time.sleep(sleep_time)
 
 
 # 示例调用
 if __name__ == "__main__":
-    options = webdriver.EdgeOptions()
-    options.add_argument('--user-data-dir=C:\\Users\\用户名\\AppData\\Local\\Microsoft\\Edge\\User Data\\Profile 1')
-    driver = webdriver.Edge(options=options, executable_path="C:\\Users\\用户名\\Desktop\\msedgedriver.exe")
+    # 定义 Chrome 配置
+    options = webdriver.ChromeOptions()
+    options.add_argument('--user-data-dir=C:\\Users\\用户名\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1') # 替换为实际路径
+
+    # 定义 ChromeDriver 的路径
+    service = Service(executable_path="C:\\Users\\用户名\\Desktop\\chromedriver.exe") # 替换为 chromedriver 的实际路径
+
+    # 启动浏览器
+    driver = webdriver.Chrome(service=service, options=options)
 
     violation_words = ["敏感词1", "敏感词2", "敏感词3"]  # 替换为实际的违规词
     video_urls = ["https://www.bilibili.com/video/BVxxxxxxxx"]  # 替换为需要监控的视频链接
