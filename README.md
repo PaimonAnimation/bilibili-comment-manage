@@ -6,6 +6,8 @@
 
 [Issues](https://github.com/PaimonAnimation/bilibili-comment-manage/issues)
 
+[Gitee镜像](https://gitee.com/paimonanimation/bilibili-comment-manage)
+
 [派蒙的博客](https://paimonmeow.cn)
 
 # 简介
