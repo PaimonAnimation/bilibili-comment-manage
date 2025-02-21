@@ -34,14 +34,14 @@
 1. 请先从[这里](https://www.python.org/ftp/python/3.13.2/python-3.13.2-amd64.exe)下载Python 3.13。
 >[!TIP]
 >你也可以在 Microsoft Store 里下载Python。
->![Microsoft Store截图](https://pic1.imgdb.cn/item/67b7f581d0e0a243d40137bd.png)
+>![Microsoft Store截图](https://github.com/PaimonAnimation/bilibili-comment-manage/blob/main/pictures/1.png)
 2. 在[releases](https://github.com/paimonanimation/releases)里下载zip包。（包含程序源码、Driver和 `requirements.txt` 。
 >[!NOTE]
 >Release里包含了**Edge**和**Chrome**两个版本的包，请根据**实际情况**选择使用相应的程序源码，并安装相应的Driver。
 3. 拿到程序文件之后，先安装 `requirements.txt` 里面的依赖。<br>然后你可以在 IDLE、命令行或者VSC里直接运行了！~~其实是我懒得编译~~
 >[!IMPORTANT]
 >请**按照注释，按需修改**代码第125、130和131行的内容。
->![截图](https://pic1.imgdb.cn/item/67b7f984d0e0a243d4013913.png)
+>![截图](https://github.com/PaimonAnimation/bilibili-comment-manage/blob/main/pictures/2.png)
 
 # 更新记录
 
